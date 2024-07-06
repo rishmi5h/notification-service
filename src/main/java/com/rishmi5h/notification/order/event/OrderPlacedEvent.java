@@ -1,4 +1,4 @@
-package com.rishmi5h.notification.order;
+package com.rishmi5h.notification.order.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
