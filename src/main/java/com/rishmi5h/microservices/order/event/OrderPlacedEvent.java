@@ -1,4 +1,4 @@
-package com.rishmi5h.order.event;
+package com.rishmi5h.microservices.order.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

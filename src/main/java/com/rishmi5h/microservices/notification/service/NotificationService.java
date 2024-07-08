@@ -1,6 +1,8 @@
-package com.rishmi5h.notification.service;
+package com.rishmi5h.microservices.notification.service;
 
-import com.rishmi5h.notification.order.OrderPlacedEvent;
+import com.rishmi5h.microservices.order.event.OrderPlacedEvent;
+import jakarta.mail.Message;
+import jakarta.mail.internet.InternetAddress;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -21,7 +23,7 @@ public class NotificationService {
         log.info("Got Message form order-placed topic {}", orderPlacedEvent);
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             mimeMessage.setFrom("rishabhmishrabu@gmail.com");
-            mimeMessage.setText(orderPlacedEvent.getEmail());
+            mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(orderPlacedEvent.getEmail()));
             mimeMessage.setSubject(String.format("Your Order with id %s is placed successfully", orderPlacedEvent.getOrderId()));
             mimeMessage.setText(String.format("""
                     Dear Customer,
